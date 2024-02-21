@@ -12,7 +12,7 @@ function Banner() {
         const request = await axios.get(requests.fetchNetflixOriginals);
         setMovie(
           request.data.results[
-            Math.floor(Math.random) * request.data.results.length
+            Math.floor(Math.random) * request.data.results.length - 1
           ]
         );
         return request;
@@ -29,7 +29,7 @@ function Banner() {
   }
 
   const backgroundImage = movie?.backdrop_path
-    ? `url("https://image.tmdb.org/t/p/original/${movie.backdrop_path}")`
+    ? `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`
     : "";
   return (
     <div>
@@ -37,7 +37,6 @@ function Banner() {
         className="banner"
         style={{
           backgroundSize: "cover",
-          // backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
           backgroundImage: backgroundImage,
           backgroundPosition: "center center",
         }}
